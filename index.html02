@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: azure;
+        }
+
+        #sprite_viewer {              
+            position: absolute;
+            width: 7vw;
+            height: 10vw;
+            background-size: 800% 100%;
+            background-image: url(animation_grundfil-02.svg);
+            transform: rotate(30deg) skewX(-30deg);
+            transform-origin: left top;
+            left: 0vw;
+            top: -18vw;
+            background-color: white;
+/*            outline: solid .5px black;*/
+            /* animation-name: sprite_viewer_kf;
+            animation-duration: 16s;
+            animation-timing-function: steps(8);
+            animation-iteration-count: infinite;*/
+        }
+
+/*
+        @keyframes sprite_viewer_kf {
+            0% {
+                background-position: 0;
+            }
+            100% {
+
+                background-position: -800%;
+            }
+
+        }
+*/
+
+        #sprite_container {
+            position: absolute;
+            width: 56vw;
+            height: 10vw;
+            background-size: 100% 100%;
+            background-image: url(animation_grundfil-02.svg);
+            transform: rotate(30deg) skewX(-30deg);
+            transform-origin: left top;
+            left: 0vw;
+            top: -12vw;
+            background-color: white;
+            /*            outline: solid .5px black;*/
+            /*            border: solid 2px black;*/
+            /*            animation-name: sprite_container_kf;
+            animation-duration: 2s;
+
+            animation-timing-function: linear;
+
+            animation-iteration-count: infinite;*/
+        }
+
+        /*
+        @keyframes sprite_container_kf {
+            0% {
+                background-position: 0vw;
+            }
+            50% {
+                background-position: 0vw;
+            }
+            100% {
+
+                background-position: -7vw;
+            }
+
+        }
+*/
+
+        #sprite_container_container {
+            position: absolute;
+            left: 20vw;
+            top: 30vw;
+        }
+
+        /*
+        #skille_linie {
+            margin:0;
+            padding:0;
+            position: absolute;
+            left:0vw;
+            top:0vw;
+            border: 0;
+            height: .5px;
+            background: black;
+            transform: rotate(90deg);
+            width: 10vw;
+        }
+*/
+
+    </style>
+</head>
+
+<body>
+    <div id="sprite_container_container">
+        <div id="sprite_container">
+            <!--            <hr id="skille_linie">-->
+        </div>
+        <div id="sprite_viewer">
+
+        </div>
+
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
+
+    <script>
+
+           var posIterator = 1;    
+//     var the7vw = document.documentElement.clientWidth/100*7; 
+    //    var the7vw = 7; 
+//        var myPos = the7vw;
+//        $("#sprite_viewer").css("background-position",myPos + "px");
+         theTween() ;
+        function theTween() {
+            TweenMax.to("#sprite_container", .1, {
+                backgroundPosition: (document.documentElement.clientWidth/100*7*(posIterator++))+"px",
+                //backgroundPosition: myPos+"px",
+                
+                 //myPos + "px"
+                //                    repeat: 1000,
+                //            onComplete: theRepeatFunction
+                //           repeatDelay:1,
+                //
+                onComplete: theRepeatFunction,
+                            ease: Linear.easeNone
+            });
+        }
+        
+
+        function theRepeatFunction() {
+//            posIterator++;
+            console.log("repeat! " + $("#sprite_container").css("background-position"));
+//            myPos +=  the7vw;
+            setTimeout(theTween,250);
+//            $("#sprite_viewer").css("background-position",(myPos - the7vw)+"px");
+            $("#sprite_viewer").css("background-position","+=100%");
+
+        }
+
+    </script>
+</body>
+
+</html>
